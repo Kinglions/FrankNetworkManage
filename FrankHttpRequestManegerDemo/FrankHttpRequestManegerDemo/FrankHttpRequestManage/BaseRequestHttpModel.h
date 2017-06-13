@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
     
     BusinessHttpType_None = 0,// 默认状态
     BusinessHttpType_LoadWeather ,// 请求天气
+    
+    // 此处可以根据自己的工程需求进行添加枚举分类。。。
 };
 
 #pragma mark -------- 通过 代理 方式处理请求回调，当使用 block 方式处理时，可以忽略代理  ---------

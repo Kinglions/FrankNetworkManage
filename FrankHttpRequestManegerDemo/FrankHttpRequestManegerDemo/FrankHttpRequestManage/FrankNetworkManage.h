@@ -19,22 +19,40 @@
 
 typedef void (^RequestPrepare)();
 typedef void (^RequestFinally)();
+
+/**
+ 请求成功回调
+
+ @param task 请求对象
+ @param responseObject 响应数据
+ @param requestParams 请求参数
+ */
+
 typedef void (^ReplySucess)(NSURLSessionDataTask *task, id responseObject, NSDictionary* requestParams);
+
+/**
+ 请求失败回调
+ */
+
 typedef void (^ReplyFailure)(NSURLSessionDataTask *task, id responseObject, NSDictionary* requestParams);
+
+/**
+ 请求错误回调
+ */
+
 typedef void (^ReplyError)(NSError *error, NSURLSessionDataTask *task, NSDictionary* requestParams);
-/*!
- *
- *  上传进度
+
+/*  上传进度
  *
  *  @param bytesWritten              已上传的大小
  *  @param totalBytesWritten         总上传大小
  */
+
 typedef void (^ReplyUploadProgress)(int64_t bytesWritten,int64_t totalBytesWritten);
 
 
 
 typedef void (^MultipartData)(id <AFMultipartFormData> formData);
-
 
 /**
  基础网络请求 其他的请求统一由此类发出
@@ -46,7 +64,9 @@ typedef void (^MultipartData)(id <AFMultipartFormData> formData);
  - HTTP_REQUEST_METHOD_PATCH:
  - HTTP_REQUEST_METHOD_DELETE:
  */
+
 typedef NS_ENUM(NSUInteger, HTTP_REQUEST_METHOD) {
+    
     HTTP_REQUEST_METHOD_GET = 0,
     HTTP_REQUEST_METHOD_HEAD,
     HTTP_REQUEST_METHOD_POST,
@@ -55,8 +75,6 @@ typedef NS_ENUM(NSUInteger, HTTP_REQUEST_METHOD) {
     HTTP_REQUEST_METHOD_DELETE,
 };
 
-
-
 /**
  网络请求缓存处理
 
@@ -64,7 +82,9 @@ typedef NS_ENUM(NSUInteger, HTTP_REQUEST_METHOD) {
  - NetworkCacheType_OnlyCache: 只进行缓存，但是不读取
  - NetworkCacheType_CacheAndLoad: 进行缓存，并且请求数据时先进行加载缓存，本次请求数据，下次加载
  */
+
 typedef NS_ENUM(NSUInteger, NetworkCacheType) {
+    
     NetworkCacheType_Never = 0,
     NetworkCacheType_OnlyCache,
     NetworkCacheType_CacheAndLoad,
@@ -77,19 +97,25 @@ typedef NS_ENUM(NSUInteger, NetworkCacheType) {
 /**
  *  创建单例对象
  */
+
 +(instancetype)shareManager;
 
 /**
  网络数据的缓存处理类型
  */
+
 @property (nonatomic,assign)NetworkCacheType cacheType;
+
 /**
  *  判断请求时是否需要 hud
  */
+
 @property (nonatomic, assign) BOOL isShowHUD;
+
 /**
  *  请求之前的准备，可直接调用本类对象的 prepare
  */
+
 @property (nonatomic, copy) RequestPrepare prepare;
 
 /**
@@ -113,20 +139,16 @@ typedef NS_ENUM(NSUInteger, NetworkCacheType) {
 /**
  共外界调用配置 判断逻辑【根据服务器返回值进行配置，可以在 Appdelegate 中进行设置】
  *
- * 例如： code = A0000 表示成功
- *       code = A0004 表示账号失效【账号失效之后，会自动发送账号失效通知】
- *
- *       responseSuccess 返回数据
- *
  *  @return YES 表示数据正确，NO 表示后台的错误提示，证明返回有误
  */
 @property (nonatomic,copy) BOOL (^judgeResponseIsSuccess)(id responseSuccess);
 /*
  *
  *  用于指定网络请求接口的基础url，如：
- *  http://www.baudu.com或者http://101.200.209.244
- *  通常在AppDelegate中启动时就设置一次就可以了。如果接口有来源
- *  于多个服务器，可以调用更新
+ *  http://www.baudu.com
+ *  通常在AppDelegate中启动时就设置一次就可以了。
+    如果接口有来源于多个服务器，可以调用更新
+ *
  *
  *  @param baseUrl 网络接口的基础url
  */
@@ -145,10 +167,7 @@ typedef NS_ENUM(NSUInteger, NetworkCacheType) {
  自动判断 baseurl 并进行组合 url
  */
 + (NSString *)absoluteUrlWithPath:(NSString *)path;
-/*
- *  禁止菊花转动
- */
-- (void)doNotHUD;
+
 
 /**
  *  统一网络请求

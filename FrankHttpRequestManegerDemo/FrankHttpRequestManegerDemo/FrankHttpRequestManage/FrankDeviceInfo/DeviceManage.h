@@ -10,8 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
-#define LOCALSUCCESS_NOTIFICATION @"local_success_notification"// 定位成功之后的通知
-
 //获取当前设备对应的height
 #define Screen_height (MAX([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width))
 //获取当前设备对应的width
@@ -39,9 +37,6 @@
 #define IOS9_OR_LATER ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending)
 // ios10 之后
 #define IOS10_OR_LATER ([[[UIDevice currentDevice] systemVersion] compare:@"10.0" options:NSNumericSearch] != NSOrderedAscending)
-
-
-//typedef void(^BaiduMapBlock)(NSString *str);
 
 
 @interface DeviceManage : NSObject
@@ -94,9 +89,6 @@
  *  cpu类型
  */
 @property(nonatomic,strong)NSString * cpuType;
-
-
-
 /**
  *  屏幕宽度
  */

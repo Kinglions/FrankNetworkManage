@@ -24,26 +24,33 @@
     return YES;
 }
 
-//#error ------ 根据自己服务器要求配置请求头信息  ------------
+// ------ 根据自己服务器数据格式配置请求结果判断的回调  ------------
+
 /**
  配置网络请求
  */
 -(void)setHttpBaseMessage{
+    
     // 配置网络请求 baseUrl
     [FrankNetworkManage updateBaseUrl:@"http://apistore.baidu.com/"];
+    
+    // 配置网络数据缓存类型
     [FrankNetworkManage shareManager].cacheType = NetworkCacheType_CacheAndLoad;
     
     // 配置网络请求成功判断逻辑
     [FrankNetworkManage shareManager].judgeResponseIsSuccess = ^BOOL(id responseSuccess) {
         
         BOOL loginSucess = NO;
-        if ( [responseSuccess isKindOfClass:[NSDictionary class]] )
-        {
-            if (responseSuccess[@"errNum"] != nil)
-            {
+        
+        if ( [responseSuccess isKindOfClass:[NSDictionary class]] ) {
+            
+            if (responseSuccess[@"errNum"] != nil) {
+                
+                // 判断是否请求成功，loginSucess = YES ：表示成功，否则表示失败
                 loginSucess =  [responseSuccess[@"errNum"] isEqualToNumber:@(0)];
                 
-                if ([responseSuccess[@"errNum"] isEqualToNumber:@(4)]) {// 账号被登出，下次需要重新登录
+                // 账号被登出，下次需要重新登录，并且发送通知
+                if ([responseSuccess[@"errNum"] isEqualToNumber:@(4)]) {
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"账号失效通知" object:nil userInfo:responseSuccess];// 发送重新登录的通知
                 }

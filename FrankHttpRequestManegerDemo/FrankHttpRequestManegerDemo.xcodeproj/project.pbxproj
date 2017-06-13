@@ -198,10 +198,10 @@
 			children = (
 				01C050E31EEE8B470020160F /* FrankAPIClicent.h */,
 				01C050E41EEE8B470020160F /* FrankAPIClicent.m */,
-				01C050E51EEE8B470020160F /* FrankHttpDownloadManage.h */,
-				01C050E61EEE8B470020160F /* FrankHttpDownloadManage.m */,
 				01C050E71EEE8B470020160F /* FrankNetworkManage.h */,
 				01C050E81EEE8B470020160F /* FrankNetworkManage.m */,
+				01C050E51EEE8B470020160F /* FrankHttpDownloadManage.h */,
+				01C050E61EEE8B470020160F /* FrankHttpDownloadManage.m */,
 				01C051011EEE934A0020160F /* BaseRequestHttpModel.h */,
 				01C051021EEE934A0020160F /* BaseRequestHttpModel.m */,
 				01C051041EEE93950020160F /* FrankNetworkMacro.h */,
