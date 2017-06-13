@@ -6,11 +6,12 @@
 2：将`AFNetworking`原有的两种回调方式拓展为了三种回调，并且支持用户根据服务器数据格式进行配置，功能细化，操作简单；
 3：结合`FMDB`封装了数据库，可以根据需要进行缓存网络数据；
 4：集成了`Delegate`和`Block`两种网络回调方式，用户可以根据自己的喜好进行选择使用任意一种回调方式；</h6>
-[Demo链接：  https://github.com/Kinglions/FrankNetworkManage](https://github.com/Kinglions/FrankNetworkManage)</br>
+<a href="https://github.com/Kinglions/FrankNetworkManage">Demo链接：https://github.com/Kinglions/FrankNetworkManage</a>
 <h4>二：框架解析</h4>
 
 ![框架截图.png](http://upload-images.jianshu.io/upload_images/1616138-661d9664e3eaa65c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 <h6>（1）网络请求框架：</h6>
+
 ```
 /**
  *  网络请求封装
@@ -334,6 +335,7 @@ typedef NS_ENUM(NSInteger ,DownloadStatus) {
 <h6>（3）请求类BaseModel类 ：</h6>
 这个类是为了方便使用，而创建的一个基类框架，相当于在`ViewController`和`FrankNetworkManage`中间添加的一层，用于处理数据交互相关逻辑，所以后期创建具体请求类只需要集成该`BaseRequestHttpModel`类，重写父类方法即可。
 代码解析：
+
 ```
 #import <Foundation/Foundation.h>
 #import "FrankNetworkMacro.h"
@@ -489,6 +491,7 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
 ```
 <h6>注意点：</h6>
 （1）当使用代理方式进行处理网络回调时，需要设置 `delegate`，调用请求方法
+
 ```
 /**
  供子类调用 【  代理方式请求调用方法  】
@@ -503,6 +506,7 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
             isNeedHeaderParams:(BOOL)isNeedHeader;
 ```
 并且实现代理方法即可，后续的处理逻辑可以统一放在代理方法中进行处理
+
 ```
 /**
  *  为了降低耦合性，通过这个协议方法可以在对请求状态进行判断
@@ -514,6 +518,7 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
 - (void)DoneBusiness:(enum BusinessHttpType)type status:(ResponseHttpType)retStatus
 ```
 （2）当使用`block`回调进行处理网络回调时，只需要调用请求方法，对于每一个请求结果的处理都可以单独进行处理
+
 ```
 /**
  供子类调用 【  代理方式请求调用方法  】
@@ -534,6 +539,7 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
                   netError:(ReplyError)errorBlock;
 ```
 但是不管是用那种方式，如果想要实现字典转模型，那都需要在子类中重写实现具体方法逻辑
+
 ```
 /**
  之类需要根据自己的需求进行重写
@@ -550,6 +556,7 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
 这部分是加载动画hud，具体内容可移步 [FrankActivityHUD 动画](http://www.jianshu.com/p/e8399a35c7fb) 进行查看</br>
 <h6>（5）设备信息加载工具 `DeviceManager`：</h6>
 这部分主要是为了方便查看、获取一些设备信息而集成的一个工具单例类，功能如下：
+
 ```
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
