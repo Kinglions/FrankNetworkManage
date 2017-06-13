@@ -1,0 +1,433 @@
+//
+//  FrankHttpRequestManage.m
+//  FrankAFNetWorking
+//
+//  Created by 武玉宝 on 16/1/24.
+//  Copyright © 2016年 Frank. All rights reserved.
+//
+
+#import "FrankHttpRequestManage.h"
+#import "AFNetworkActivityIndicatorManager.h"
+#import "FrankAPIClicent.h"
+#import "StrDefine.h"
+
+static NSString * WYB_privateNetworkBaseUrl = nil;
+static BOOL WYB_shouldAutoEncode = NO;
+static NSDictionary * WYB_httpHeaders = nil;
+
+@implementation FrankHttpRequestManage
+
+/**
+ *  创建单例对象
+ */
+
+DEFINE_SINGLETON_FOR_CLASS(FrankHttpRequestManage)
+
+-(void)startHUD
+{
+    [MBProgressHUD showHUDAddedTo:nil animated:YES];
+}
+
+-(void)stopHUD
+{
+    [MBProgressHUD hideHUDForView:nil animated:YES];
+}
+
++ (void)updateBaseUrl:(NSString *)baseUrl
+{
+    WYB_privateNetworkBaseUrl = baseUrl;
+}
+
++ (NSString *)baseUrl
+{
+    return WYB_privateNetworkBaseUrl;
+}
+
++ (void)shouldAutoEncodeUrl:(BOOL)shouldAutoEncode {
+    WYB_shouldAutoEncode  = shouldAutoEncode;
+}
+
++ (BOOL)shouldEncode {
+    return WYB_shouldAutoEncode;
+}
+
+/**
+ *  根据返回信息判断是否需要重新登录
+ *
+ *  @param responseObject 返回信息
+ *
+ *  @return YES 表示需要重新登录
+ */
++(BOOL)judgeNeedRelogin:(id)responseObject{
+    
+    BOOL isNeedLogin = NO;
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+        
+        if ([[NSString stringWithFormat:@"%@",responseObject[@"code"]] isEqualToString:ResponseStatus_AccountError]) {
+            isNeedLogin = YES;
+        }
+    }
+    
+    return isNeedLogin;
+}
+
+/**
+ *  判断请求字段时候成功
+ *
+ *  @param responseObject 响应数据
+ *
+ *  @return YES表示成功，NO表示失败
+ */
++(BOOL)judgeResponeSucessOrFail:(id)responseObject
+{
+    BOOL loginSucess = NO;
+    if ( [responseObject isKindOfClass:[NSDictionary class]] )
+    {
+        if (responseObject[@"code"] != nil)
+        {
+            loginSucess =  [[NSString stringWithFormat:@"%@",responseObject[@"code"]] isEqualToString:@"A00000"];
+        }
+    }
+    return loginSucess;
+}
+
+/**
+ *  ios 9.0 之后，使用该方法对字符串进行编码
+ */
++ (NSString *)encodeUrl:(NSString *)url {
+    return [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+
+
++ (void)httpRequestGETWithURLString:(NSString*)     URLString
+                       headerParams:(NSDictionary *)headerParams
+                             params:(NSDictionary*) params
+                            prepare:(RequestPrepare)  prepare
+                            finally:(RequestFinally)  finally
+                             sucess:(ReplySucess)   sucess
+                            failure:(ReplyFailure)  failure
+                              error:(ReplyError)netError
+{
+    
+    NSParameterAssert( URLString != nil);
+    
+    [[FrankHttpRequestManage sharedFrankHttpRequestManage] startHUD];
+
+    if ([FrankHttpRequestManage shouldEncode]) {
+        URLString = [FrankHttpRequestManage encodeUrl:URLString];
+    }
+    
+    if (headerParams)
+    {
+        for (NSString * key in headerParams.allKeys)
+        {
+            [[FrankAPIClicent sharedClient].requestSerializer setValue:headerParams[key] forHTTPHeaderField:key];
+        }
+    }
+    
+    if( prepare )
+        prepare();
+
+    
+    [[FrankAPIClicent sharedClient] GET:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+
+        if( finally )
+            finally();
+        
+        
+        if ([FrankHttpRequestManage judgeResponeSucessOrFail:responseObject])
+        {
+            if (sucess)
+            {
+                sucess(task,responseObject,params);
+            }
+        }
+        else
+        {
+            if (failure)
+            {
+                failure(task,responseObject,params,[self judgeNeedRelogin:responseObject]);
+            }
+        }
+        
+     
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+
+        NSLog(@"--------%@",error);
+        
+        if (netError)
+        {
+            netError(error,task,params);
+        }
+        
+    }];
+}
+
++ (void)httpRequestPOSTWithURLStr:(NSString*)     URLString
+                     headerParams:(NSDictionary *)headerParams
+                           params:(NSDictionary*) params
+                          prepare:(RequestPrepare)  prepare
+                          finally:(RequestFinally)  finally
+                           sucess:(ReplySucess)   sucess
+                          failure:(ReplyFailure)  failure
+                            error:(ReplyError)netError
+{
+    
+    [[FrankHttpRequestManage sharedFrankHttpRequestManage] startHUD];
+
+    if ([FrankHttpRequestManage shouldEncode]) {
+        URLString = [FrankHttpRequestManage encodeUrl:URLString];
+    }
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
+    
+    if( prepare )
+        prepare();
+
+    if (headerParams)
+    {
+        for (NSString * key in headerParams.allKeys)
+        {
+            [[FrankAPIClicent sharedClient].requestSerializer setValue:headerParams[key] forHTTPHeaderField:key];
+        }
+    }
+
+
+    [[FrankAPIClicent sharedClient] POST:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+        
+        
+        if ([FrankHttpRequestManage judgeResponeSucessOrFail:responseObject])
+        {
+            if (sucess)
+            {
+                sucess(task,responseObject,params);
+            }
+        }
+        else
+        {
+            if (failure)
+            {
+                failure(task,responseObject,params,[self judgeNeedRelogin:responseObject]);
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+        
+        if( finally )
+            finally();
+        
+        if (netError)
+        {
+            netError(error,task,params);
+        }
+        
+        
+    }];
+    
+}
+
+
++ (void)httpRequestPOSTWith:(NSString*) URLString
+               headerParams:(NSDictionary *)headerParams
+                     params:(NSDictionary*) params
+  constructingBodyWithBlock:(MultipartData) multipartData
+                    prepare:(RequestPrepare)  prepare
+                    finally:(RequestFinally)  finally
+                     sucess:(ReplySucess)   sucess
+                    failure:(ReplyFailure)  failure
+                      error:(ReplyError)netError
+{
+    
+    NSParameterAssert( URLString != nil);
+    NSParameterAssert( params != nil);
+    
+    if ([FrankHttpRequestManage shouldEncode]) {
+        URLString = [FrankHttpRequestManage encodeUrl:URLString];
+    }
+    
+    [[FrankHttpRequestManage sharedFrankHttpRequestManage] startHUD];
+    
+    if( prepare )
+        prepare();
+    
+    
+    if (headerParams)
+    {
+        for (NSString * key in headerParams.allKeys)
+        {
+            [[FrankAPIClicent sharedClient].requestSerializer setValue:headerParams[key] forHTTPHeaderField:key];
+        }
+    }
+    
+    [[FrankAPIClicent sharedClient] POST:URLString parameters:params constructingBodyWithBlock:multipartData success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+        
+        if ([FrankHttpRequestManage judgeResponeSucessOrFail:responseObject])
+        {
+            if (sucess)
+            {
+                sucess(task,responseObject,params);
+            }
+        }
+        else
+        {
+            if (failure)
+            {
+                failure(task,responseObject,params,[self judgeNeedRelogin:responseObject]);
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+
+        if( finally )
+            finally();
+        
+        if (netError)
+        {
+            netError(error,task,params);
+        }
+        
+        
+    }];
+}
+
++ (void)httpRequestHEADWith:(NSString*) URLString
+                     params:(NSDictionary*) params
+                    prepare:(RequestPrepare)  prepare
+                    finally:(RequestFinally)  finally
+                     sucess:(ReplySucess)   success
+                      error:(ReplyError)netError
+{
+    NSParameterAssert( URLString != nil);
+    NSParameterAssert( params != nil);
+    
+    if ([FrankHttpRequestManage shouldEncode]) {
+        URLString = [FrankHttpRequestManage encodeUrl:URLString];
+    }
+    
+    [[FrankHttpRequestManage sharedFrankHttpRequestManage] startHUD];
+    
+    if( prepare )
+        prepare();
+    
+    NSStringEncoding oldStringEncoding = [FrankAPIClicent sharedClient].requestSerializer.stringEncoding;
+    [FrankAPIClicent sharedClient].requestSerializer.HTTPShouldHandleCookies = YES;
+    [FrankAPIClicent sharedClient].requestSerializer.stringEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    
+    [[FrankAPIClicent sharedClient] HEAD:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+
+        if (finally)
+            finally();
+        
+        if (success)
+        {
+            success(task,nil,params);
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [[FrankHttpRequestManage sharedFrankHttpRequestManage] stopHUD];
+        
+        if (finally)
+            finally();
+        
+        if (netError)
+        {
+            netError(error,task,params);
+        }
+        
+    }];
+    
+    [FrankAPIClicent sharedClient].requestSerializer.stringEncoding = oldStringEncoding;
+    
+}
+
+
+
+//+ (void)httpRequestUploadImage:(UIImage *)image
+//                           url:(NSString *)url
+//                       prepare:(RequestPrepare)  prepare
+//                      filename:(NSString *)filename
+//                          name:(NSString *)name
+//                        params:(NSDictionary*) params
+//                       finally:(RequestFinally)  finally
+//                        sucess:(ReplySucess)   sucess
+//                         error:(ReplyError)    netError
+//{
+//    
+//    [FrankHttpRequestManage  uploadWithImage:image url:url filename:filename name:name progress:nil params:params finally:finally sucess:sucess error:networkError];
+//
+//}
+//
+//+ (void)uploadWithImage:(UIImage *)image
+//                    url:(NSString *)url
+//               filename:(NSString *)filename
+//                   name:(NSString *)name
+//             parameters:(NSDictionary *)parameters
+//               progress:(FrankUploadProgress)progress
+//                finally:(RequestFinally)  finally
+//                 sucess:(ReplySucess)   sucess
+//                  error:(ReplyError)    networkError
+//{
+//    NSParameterAssert( url != nil);
+//    NSParameterAssert( parameters != nil);
+//    
+//    if ([FrankHttpRequestManage shouldEncode]) {
+//        url = [FrankHttpRequestManage encodeUrl:url];
+//    }
+//    
+//    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+//    
+//    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        
+//        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+//        
+//        NSString *imageFileName = filename;
+//        
+//        if (filename == nil || ![filename isKindOfClass:[NSString class]] || filename.length == 0)
+//        {
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            formatter.dateFormat = @"yyyyMMddHHmmss";
+//            NSString *str = [formatter stringFromDate:[NSDate date]];
+//            imageFileName = [NSString stringWithFormat:@"%@.jpg", str];
+//        }
+//        
+//        // 上传图片，以文件流的格式
+//        [formData appendPartWithFileData:imageData name:name fileName:imageFileName mimeType:@"image/jpeg"];
+//        
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        
+//        if(sucess)
+//        {
+//            sucess(task,responseObject,parameters);
+//        }
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//        if(networkError)
+//        {
+//            networkError(error,task,parameters);
+//        }
+//        
+//    }];
+//    
+//}
+
+
+@end

@@ -1,0 +1,724 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01BEE1AC1EEEEB14002C2D79 /* HttpModelDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BEE1AB1EEEEB14002C2D79 /* HttpModelDelegateTest.m */; };
+		01BEE1AF1EEEEB32002C2D79 /* HttpModelBlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BEE1AE1EEEEB32002C2D79 /* HttpModelBlockTest.m */; };
+		01C050B01EEE869C0020160F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050AF1EEE869C0020160F /* main.m */; };
+		01C050B31EEE869D0020160F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050B21EEE869D0020160F /* AppDelegate.m */; };
+		01C050B61EEE869D0020160F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050B51EEE869D0020160F /* ViewController.m */; };
+		01C050B91EEE869D0020160F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C050B71EEE869D0020160F /* Main.storyboard */; };
+		01C050BB1EEE869D0020160F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01C050BA1EEE869D0020160F /* Assets.xcassets */; };
+		01C050BE1EEE869D0020160F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C050BC1EEE869D0020160F /* LaunchScreen.storyboard */; };
+		01C050C91EEE86A30020160F /* FrankHttpRequestManegerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050C81EEE86A30020160F /* FrankHttpRequestManegerDemoTests.m */; };
+		01C050D41EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050D31EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.m */; };
+		01C050EA1EEE8B470020160F /* FrankAPIClicent.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050E41EEE8B470020160F /* FrankAPIClicent.m */; };
+		01C050EB1EEE8B470020160F /* FrankHttpDownloadManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050E61EEE8B470020160F /* FrankHttpDownloadManage.m */; };
+		01C050EC1EEE8B470020160F /* FrankNetworkManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050E81EEE8B470020160F /* FrankNetworkManage.m */; };
+		01C050F21EEE8D2B0020160F /* FrankFMDBManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050EF1EEE8D2B0020160F /* FrankFMDBManage.m */; };
+		01C050F31EEE8D2B0020160F /* FrankUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050F11EEE8D2B0020160F /* FrankUserDefaults.m */; };
+		01C050F71EEE8DAE0020160F /* DeviceManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050F61EEE8DAE0020160F /* DeviceManage.m */; };
+		01C050FE1EEE8DDF0020160F /* FrankActivityHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01C050F91EEE8DDF0020160F /* FrankActivityHUD.bundle */; };
+		01C050FF1EEE8DDF0020160F /* FrankActivityHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050FB1EEE8DDF0020160F /* FrankActivityHUD.m */; };
+		01C051001EEE8DDF0020160F /* PopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050FD1EEE8DDF0020160F /* PopTipView.m */; };
+		01C051031EEE934A0020160F /* BaseRequestHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C051021EEE934A0020160F /* BaseRequestHttpModel.m */; };
+		01C051071EEE94EE0020160F /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C051061EEE94EE0020160F /* NSString+Category.m */; };
+		B298181859E1E98ECD420AC4 /* libPods-FrankHttpRequestManegerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3A7F14F2AF64AFD5C6FB22 /* libPods-FrankHttpRequestManegerDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01C050C51EEE86A10020160F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01C050A31EEE869C0020160F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01C050AA1EEE869C0020160F;
+			remoteInfo = FrankHttpRequestManegerDemo;
+		};
+		01C050D01EEE86A30020160F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01C050A31EEE869C0020160F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01C050AA1EEE869C0020160F;
+			remoteInfo = FrankHttpRequestManegerDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01BEE1AA1EEEEB14002C2D79 /* HttpModelDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModelDelegateTest.h; sourceTree = "<group>"; };
+		01BEE1AB1EEEEB14002C2D79 /* HttpModelDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpModelDelegateTest.m; sourceTree = "<group>"; };
+		01BEE1AD1EEEEB32002C2D79 /* HttpModelBlockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModelBlockTest.h; sourceTree = "<group>"; };
+		01BEE1AE1EEEEB32002C2D79 /* HttpModelBlockTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpModelBlockTest.m; sourceTree = "<group>"; };
+		01C050AB1EEE869C0020160F /* FrankHttpRequestManegerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrankHttpRequestManegerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C050AF1EEE869C0020160F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01C050B11EEE869C0020160F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01C050B21EEE869D0020160F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01C050B41EEE869D0020160F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		01C050B51EEE869D0020160F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		01C050B81EEE869D0020160F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		01C050BA1EEE869D0020160F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01C050BD1EEE869D0020160F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		01C050BF1EEE869D0020160F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C050C41EEE86A10020160F /* FrankHttpRequestManegerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrankHttpRequestManegerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C050C81EEE86A30020160F /* FrankHttpRequestManegerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrankHttpRequestManegerDemoTests.m; sourceTree = "<group>"; };
+		01C050CA1EEE86A30020160F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C050CF1EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrankHttpRequestManegerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C050D31EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrankHttpRequestManegerDemoUITests.m; sourceTree = "<group>"; };
+		01C050D51EEE86A30020160F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C050E11EEE8A5D0020160F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		01C050E31EEE8B470020160F /* FrankAPIClicent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankAPIClicent.h; sourceTree = "<group>"; };
+		01C050E41EEE8B470020160F /* FrankAPIClicent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrankAPIClicent.m; sourceTree = "<group>"; };
+		01C050E51EEE8B470020160F /* FrankHttpDownloadManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankHttpDownloadManage.h; sourceTree = "<group>"; };
+		01C050E61EEE8B470020160F /* FrankHttpDownloadManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrankHttpDownloadManage.m; sourceTree = "<group>"; };
+		01C050E71EEE8B470020160F /* FrankNetworkManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankNetworkManage.h; sourceTree = "<group>"; };
+		01C050E81EEE8B470020160F /* FrankNetworkManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrankNetworkManage.m; sourceTree = "<group>"; };
+		01C050EE1EEE8D2B0020160F /* FrankFMDBManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankFMDBManage.h; sourceTree = "<group>"; };
+		01C050EF1EEE8D2B0020160F /* FrankFMDBManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrankFMDBManage.m; sourceTree = "<group>"; };
+		01C050F01EEE8D2B0020160F /* FrankUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankUserDefaults.h; sourceTree = "<group>"; };
+		01C050F11EEE8D2B0020160F /* FrankUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrankUserDefaults.m; sourceTree = "<group>"; };
+		01C050F51EEE8DAE0020160F /* DeviceManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceManage.h; sourceTree = "<group>"; };
+		01C050F61EEE8DAE0020160F /* DeviceManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManage.m; sourceTree = "<group>"; };
+		01C050F91EEE8DDF0020160F /* FrankActivityHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FrankActivityHUD.bundle; sourceTree = "<group>"; };
+		01C050FA1EEE8DDF0020160F /* FrankActivityHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankActivityHUD.h; sourceTree = "<group>"; };
+		01C050FB1EEE8DDF0020160F /* FrankActivityHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrankActivityHUD.m; sourceTree = "<group>"; };
+		01C050FC1EEE8DDF0020160F /* PopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopTipView.h; sourceTree = "<group>"; };
+		01C050FD1EEE8DDF0020160F /* PopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopTipView.m; sourceTree = "<group>"; };
+		01C051011EEE934A0020160F /* BaseRequestHttpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequestHttpModel.h; sourceTree = "<group>"; };
+		01C051021EEE934A0020160F /* BaseRequestHttpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRequestHttpModel.m; sourceTree = "<group>"; };
+		01C051041EEE93950020160F /* FrankNetworkMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrankNetworkMacro.h; sourceTree = "<group>"; };
+		01C051051EEE94EE0020160F /* NSString+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
+		01C051061EEE94EE0020160F /* NSString+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Category.m"; sourceTree = "<group>"; };
+		16F4ED3D394CF902BBB208D4 /* Pods-FrankHttpRequestManegerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FrankHttpRequestManegerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-FrankHttpRequestManegerDemo/Pods-FrankHttpRequestManegerDemo.release.xcconfig"; sourceTree = "<group>"; };
+		209336EB2D4226955772280C /* Pods-FrankHttpRequestManegerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FrankHttpRequestManegerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FrankHttpRequestManegerDemo/Pods-FrankHttpRequestManegerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		9F3A7F14F2AF64AFD5C6FB22 /* libPods-FrankHttpRequestManegerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FrankHttpRequestManegerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01C050A81EEE869C0020160F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B298181859E1E98ECD420AC4 /* libPods-FrankHttpRequestManegerDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C050C11EEE86A10020160F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C050CC1EEE86A30020160F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01C050A21EEE869C0020160F = {
+			isa = PBXGroup;
+			children = (
+				01C050AD1EEE869C0020160F /* FrankHttpRequestManegerDemo */,
+				01C050C71EEE86A20020160F /* FrankHttpRequestManegerDemoTests */,
+				01C050D21EEE86A30020160F /* FrankHttpRequestManegerDemoUITests */,
+				01C050AC1EEE869C0020160F /* Products */,
+				51CF68BB11668E58194DEB61 /* Pods */,
+				1D1887BD510FDE664AA063E3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		01C050AC1EEE869C0020160F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01C050AB1EEE869C0020160F /* FrankHttpRequestManegerDemo.app */,
+				01C050C41EEE86A10020160F /* FrankHttpRequestManegerDemoTests.xctest */,
+				01C050CF1EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01C050AD1EEE869C0020160F /* FrankHttpRequestManegerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				01C050E21EEE8B470020160F /* FrankHttpRequestManage */,
+				01C050B11EEE869C0020160F /* AppDelegate.h */,
+				01C050B21EEE869D0020160F /* AppDelegate.m */,
+				01C050B41EEE869D0020160F /* ViewController.h */,
+				01C050B51EEE869D0020160F /* ViewController.m */,
+				01BEE1AA1EEEEB14002C2D79 /* HttpModelDelegateTest.h */,
+				01BEE1AB1EEEEB14002C2D79 /* HttpModelDelegateTest.m */,
+				01BEE1AD1EEEEB32002C2D79 /* HttpModelBlockTest.h */,
+				01BEE1AE1EEEEB32002C2D79 /* HttpModelBlockTest.m */,
+				01C050B71EEE869D0020160F /* Main.storyboard */,
+				01C050BA1EEE869D0020160F /* Assets.xcassets */,
+				01C050BC1EEE869D0020160F /* LaunchScreen.storyboard */,
+				01C050BF1EEE869D0020160F /* Info.plist */,
+				01C050AE1EEE869C0020160F /* Supporting Files */,
+			);
+			path = FrankHttpRequestManegerDemo;
+			sourceTree = "<group>";
+		};
+		01C050AE1EEE869C0020160F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				01C050AF1EEE869C0020160F /* main.m */,
+				01C050E11EEE8A5D0020160F /* PrefixHeader.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01C050C71EEE86A20020160F /* FrankHttpRequestManegerDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				01C050C81EEE86A30020160F /* FrankHttpRequestManegerDemoTests.m */,
+				01C050CA1EEE86A30020160F /* Info.plist */,
+			);
+			path = FrankHttpRequestManegerDemoTests;
+			sourceTree = "<group>";
+		};
+		01C050D21EEE86A30020160F /* FrankHttpRequestManegerDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				01C050D31EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.m */,
+				01C050D51EEE86A30020160F /* Info.plist */,
+			);
+			path = FrankHttpRequestManegerDemoUITests;
+			sourceTree = "<group>";
+		};
+		01C050E21EEE8B470020160F /* FrankHttpRequestManage */ = {
+			isa = PBXGroup;
+			children = (
+				01C050E31EEE8B470020160F /* FrankAPIClicent.h */,
+				01C050E41EEE8B470020160F /* FrankAPIClicent.m */,
+				01C050E51EEE8B470020160F /* FrankHttpDownloadManage.h */,
+				01C050E61EEE8B470020160F /* FrankHttpDownloadManage.m */,
+				01C050E71EEE8B470020160F /* FrankNetworkManage.h */,
+				01C050E81EEE8B470020160F /* FrankNetworkManage.m */,
+				01C051011EEE934A0020160F /* BaseRequestHttpModel.h */,
+				01C051021EEE934A0020160F /* BaseRequestHttpModel.m */,
+				01C051041EEE93950020160F /* FrankNetworkMacro.h */,
+				01C050F81EEE8DDF0020160F /* FrankActivityHUD */,
+				01C050F41EEE8DAE0020160F /* FrankDeviceInfo */,
+				01C050ED1EEE8D2B0020160F /* FrankDBManager */,
+			);
+			path = FrankHttpRequestManage;
+			sourceTree = "<group>";
+		};
+		01C050ED1EEE8D2B0020160F /* FrankDBManager */ = {
+			isa = PBXGroup;
+			children = (
+				01C050EE1EEE8D2B0020160F /* FrankFMDBManage.h */,
+				01C050EF1EEE8D2B0020160F /* FrankFMDBManage.m */,
+				01C050F01EEE8D2B0020160F /* FrankUserDefaults.h */,
+				01C050F11EEE8D2B0020160F /* FrankUserDefaults.m */,
+				01C051051EEE94EE0020160F /* NSString+Category.h */,
+				01C051061EEE94EE0020160F /* NSString+Category.m */,
+			);
+			path = FrankDBManager;
+			sourceTree = "<group>";
+		};
+		01C050F41EEE8DAE0020160F /* FrankDeviceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				01C050F51EEE8DAE0020160F /* DeviceManage.h */,
+				01C050F61EEE8DAE0020160F /* DeviceManage.m */,
+			);
+			path = FrankDeviceInfo;
+			sourceTree = "<group>";
+		};
+		01C050F81EEE8DDF0020160F /* FrankActivityHUD */ = {
+			isa = PBXGroup;
+			children = (
+				01C050F91EEE8DDF0020160F /* FrankActivityHUD.bundle */,
+				01C050FA1EEE8DDF0020160F /* FrankActivityHUD.h */,
+				01C050FB1EEE8DDF0020160F /* FrankActivityHUD.m */,
+				01C050FC1EEE8DDF0020160F /* PopTipView.h */,
+				01C050FD1EEE8DDF0020160F /* PopTipView.m */,
+			);
+			path = FrankActivityHUD;
+			sourceTree = "<group>";
+		};
+		1D1887BD510FDE664AA063E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F3A7F14F2AF64AFD5C6FB22 /* libPods-FrankHttpRequestManegerDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		51CF68BB11668E58194DEB61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				209336EB2D4226955772280C /* Pods-FrankHttpRequestManegerDemo.debug.xcconfig */,
+				16F4ED3D394CF902BBB208D4 /* Pods-FrankHttpRequestManegerDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01C050AA1EEE869C0020160F /* FrankHttpRequestManegerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C050D81EEE86A30020160F /* Build configuration list for PBXNativeTarget "FrankHttpRequestManegerDemo" */;
+			buildPhases = (
+				BF1555369E4F4B8E063DBF59 /* [CP] Check Pods Manifest.lock */,
+				01C050A71EEE869C0020160F /* Sources */,
+				01C050A81EEE869C0020160F /* Frameworks */,
+				01C050A91EEE869C0020160F /* Resources */,
+				4C0100698E7F8FECEAB27751 /* [CP] Embed Pods Frameworks */,
+				DEED9B3A436B866FE725B755 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FrankHttpRequestManegerDemo;
+			productName = FrankHttpRequestManegerDemo;
+			productReference = 01C050AB1EEE869C0020160F /* FrankHttpRequestManegerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		01C050C31EEE86A10020160F /* FrankHttpRequestManegerDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C050DB1EEE86A30020160F /* Build configuration list for PBXNativeTarget "FrankHttpRequestManegerDemoTests" */;
+			buildPhases = (
+				01C050C01EEE86A10020160F /* Sources */,
+				01C050C11EEE86A10020160F /* Frameworks */,
+				01C050C21EEE86A10020160F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01C050C61EEE86A10020160F /* PBXTargetDependency */,
+			);
+			name = FrankHttpRequestManegerDemoTests;
+			productName = FrankHttpRequestManegerDemoTests;
+			productReference = 01C050C41EEE86A10020160F /* FrankHttpRequestManegerDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		01C050CE1EEE86A30020160F /* FrankHttpRequestManegerDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C050DE1EEE86A30020160F /* Build configuration list for PBXNativeTarget "FrankHttpRequestManegerDemoUITests" */;
+			buildPhases = (
+				01C050CB1EEE86A30020160F /* Sources */,
+				01C050CC1EEE86A30020160F /* Frameworks */,
+				01C050CD1EEE86A30020160F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01C050D11EEE86A30020160F /* PBXTargetDependency */,
+			);
+			name = FrankHttpRequestManegerDemoUITests;
+			productName = FrankHttpRequestManegerDemoUITests;
+			productReference = 01C050CF1EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01C050A31EEE869C0020160F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Frank;
+				TargetAttributes = {
+					01C050AA1EEE869C0020160F = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					01C050C31EEE86A10020160F = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 01C050AA1EEE869C0020160F;
+					};
+					01C050CE1EEE86A30020160F = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 01C050AA1EEE869C0020160F;
+					};
+				};
+			};
+			buildConfigurationList = 01C050A61EEE869C0020160F /* Build configuration list for PBXProject "FrankHttpRequestManegerDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01C050A21EEE869C0020160F;
+			productRefGroup = 01C050AC1EEE869C0020160F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01C050AA1EEE869C0020160F /* FrankHttpRequestManegerDemo */,
+				01C050C31EEE86A10020160F /* FrankHttpRequestManegerDemoTests */,
+				01C050CE1EEE86A30020160F /* FrankHttpRequestManegerDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01C050A91EEE869C0020160F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C050BE1EEE869D0020160F /* LaunchScreen.storyboard in Resources */,
+				01C050BB1EEE869D0020160F /* Assets.xcassets in Resources */,
+				01C050B91EEE869D0020160F /* Main.storyboard in Resources */,
+				01C050FE1EEE8DDF0020160F /* FrankActivityHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C050C21EEE86A10020160F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C050CD1EEE86A30020160F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C0100698E7F8FECEAB27751 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FrankHttpRequestManegerDemo/Pods-FrankHttpRequestManegerDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF1555369E4F4B8E063DBF59 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DEED9B3A436B866FE725B755 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FrankHttpRequestManegerDemo/Pods-FrankHttpRequestManegerDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01C050A71EEE869C0020160F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01BEE1AC1EEEEB14002C2D79 /* HttpModelDelegateTest.m in Sources */,
+				01C050B61EEE869D0020160F /* ViewController.m in Sources */,
+				01C050F21EEE8D2B0020160F /* FrankFMDBManage.m in Sources */,
+				01C051001EEE8DDF0020160F /* PopTipView.m in Sources */,
+				01C051071EEE94EE0020160F /* NSString+Category.m in Sources */,
+				01C050EC1EEE8B470020160F /* FrankNetworkManage.m in Sources */,
+				01C050B31EEE869D0020160F /* AppDelegate.m in Sources */,
+				01C050F71EEE8DAE0020160F /* DeviceManage.m in Sources */,
+				01C051031EEE934A0020160F /* BaseRequestHttpModel.m in Sources */,
+				01BEE1AF1EEEEB32002C2D79 /* HttpModelBlockTest.m in Sources */,
+				01C050EB1EEE8B470020160F /* FrankHttpDownloadManage.m in Sources */,
+				01C050EA1EEE8B470020160F /* FrankAPIClicent.m in Sources */,
+				01C050B01EEE869C0020160F /* main.m in Sources */,
+				01C050F31EEE8D2B0020160F /* FrankUserDefaults.m in Sources */,
+				01C050FF1EEE8DDF0020160F /* FrankActivityHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C050C01EEE86A10020160F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C050C91EEE86A30020160F /* FrankHttpRequestManegerDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C050CB1EEE86A30020160F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C050D41EEE86A30020160F /* FrankHttpRequestManegerDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01C050C61EEE86A10020160F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01C050AA1EEE869C0020160F /* FrankHttpRequestManegerDemo */;
+			targetProxy = 01C050C51EEE86A10020160F /* PBXContainerItemProxy */;
+		};
+		01C050D11EEE86A30020160F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01C050AA1EEE869C0020160F /* FrankHttpRequestManegerDemo */;
+			targetProxy = 01C050D01EEE86A30020160F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		01C050B71EEE869D0020160F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01C050B81EEE869D0020160F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		01C050BC1EEE869D0020160F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01C050BD1EEE869D0020160F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		01C050D61EEE86A30020160F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		01C050D71EEE86A30020160F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01C050D91EEE86A30020160F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 209336EB2D4226955772280C /* Pods-FrankHttpRequestManegerDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FrankHttpRequestManegerDemo/PrefixHeader.pch";
+				INFOPLIST_FILE = FrankHttpRequestManegerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FrankHttpRequestManegerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		01C050DA1EEE86A30020160F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16F4ED3D394CF902BBB208D4 /* Pods-FrankHttpRequestManegerDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FrankHttpRequestManegerDemo/PrefixHeader.pch";
+				INFOPLIST_FILE = FrankHttpRequestManegerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FrankHttpRequestManegerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		01C050DC1EEE86A30020160F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FrankHttpRequestManegerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FrankHttpRequestManegerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FrankHttpRequestManegerDemo.app/FrankHttpRequestManegerDemo";
+			};
+			name = Debug;
+		};
+		01C050DD1EEE86A30020160F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FrankHttpRequestManegerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FrankHttpRequestManegerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FrankHttpRequestManegerDemo.app/FrankHttpRequestManegerDemo";
+			};
+			name = Release;
+		};
+		01C050DF1EEE86A30020160F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FrankHttpRequestManegerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FrankHttpRequestManegerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FrankHttpRequestManegerDemo;
+			};
+			name = Debug;
+		};
+		01C050E01EEE86A30020160F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FrankHttpRequestManegerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FrankHttpRequestManegerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FrankHttpRequestManegerDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01C050A61EEE869C0020160F /* Build configuration list for PBXProject "FrankHttpRequestManegerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C050D61EEE86A30020160F /* Debug */,
+				01C050D71EEE86A30020160F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C050D81EEE86A30020160F /* Build configuration list for PBXNativeTarget "FrankHttpRequestManegerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C050D91EEE86A30020160F /* Debug */,
+				01C050DA1EEE86A30020160F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C050DB1EEE86A30020160F /* Build configuration list for PBXNativeTarget "FrankHttpRequestManegerDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C050DC1EEE86A30020160F /* Debug */,
+				01C050DD1EEE86A30020160F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C050DE1EEE86A30020160F /* Build configuration list for PBXNativeTarget "FrankHttpRequestManegerDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C050DF1EEE86A30020160F /* Debug */,
+				01C050E01EEE86A30020160F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01C050A31EEE869C0020160F /* Project object */;
+}
