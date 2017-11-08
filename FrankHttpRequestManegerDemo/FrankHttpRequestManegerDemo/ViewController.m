@@ -25,8 +25,22 @@
     [super viewDidLoad];
     
     
+    [FrankNetworkManage httpRequestWithHttpMethod:HTTP_REQUEST_METHOD_GET
+                                        urlString:@"api/4/news/latest"
+                                     headerParams:[BaseRequestHttpModel headerParams]
+                                           params:nil
+                                          finally:nil
+                                           sucess:^(NSURLSessionDataTask *task, id responseObject, NSDictionary *requestParams) {
+                                               
+                                               FrankLog(@"JSON数据为：%@",responseObject);
+                                               
+                                           } failure:^(NSURLSessionDataTask *task, id responseObject, NSDictionary *requestParams) {
+                                               
+                                           } error:^(NSError *error, NSURLSessionDataTask *task, NSDictionary *requestParams) {
+                                               
+                                           }];
     
-    
+
 }
 
 -(HttpModelDelegateTest *)httpDelegate{

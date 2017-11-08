@@ -755,9 +755,6 @@ static FrankFMDBManage * _frankDB = nil;
     if (!tableName) {
         NSLog(@"---%@ 创建表失败--表名不能为空",tableName);
         return NO;
-    }else if (!paramsKey || paramsKey.count<=0){
-        NSLog(@"---%@ 创建表失败--字段数组不能为空",paramsKey);
-        return NO;
     }
     
     tableName = [FrankFMDBManage replaceStringForOriginStr:tableName replaceArray:@[@"/",@":",@"."] toString:@""];

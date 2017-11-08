@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A36B5D1FB0484700B1893A /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A36B5C1FB0483700B1893A /* 1.png */; };
 		01BEE1AC1EEEEB14002C2D79 /* HttpModelDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BEE1AB1EEEEB14002C2D79 /* HttpModelDelegateTest.m */; };
 		01BEE1AF1EEEEB32002C2D79 /* HttpModelBlockTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BEE1AE1EEEEB32002C2D79 /* HttpModelBlockTest.m */; };
 		01C050B01EEE869C0020160F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C050AF1EEE869C0020160F /* main.m */; };
@@ -49,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01A36B5C1FB0483700B1893A /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		01A36B5F1FB2D49400B1893A /* XMLDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		01A36B601FB2D49400B1893A /* XMLDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		01BEE1AA1EEEEB14002C2D79 /* HttpModelDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModelDelegateTest.h; sourceTree = "<group>"; };
 		01BEE1AB1EEEEB14002C2D79 /* HttpModelDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpModelDelegateTest.m; sourceTree = "<group>"; };
 		01BEE1AD1EEEEB32002C2D79 /* HttpModelBlockTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModelBlockTest.h; sourceTree = "<group>"; };
@@ -123,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01A36B5E1FB2D49400B1893A /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				01A36B5F1FB2D49400B1893A /* XMLDictionary.h */,
+				01A36B601FB2D49400B1893A /* XMLDictionary.m */,
+			);
+			path = XMLDictionary;
+			sourceTree = "<group>";
+		};
 		01C050A21EEE869C0020160F = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +166,7 @@
 				01C050B21EEE869D0020160F /* AppDelegate.m */,
 				01C050B41EEE869D0020160F /* ViewController.h */,
 				01C050B51EEE869D0020160F /* ViewController.m */,
+				01A36B5C1FB0483700B1893A /* 1.png */,
 				01BEE1AA1EEEEB14002C2D79 /* HttpModelDelegateTest.h */,
 				01BEE1AB1EEEEB14002C2D79 /* HttpModelDelegateTest.m */,
 				01BEE1AD1EEEEB32002C2D79 /* HttpModelBlockTest.h */,
@@ -196,6 +210,7 @@
 		01C050E21EEE8B470020160F /* FrankHttpRequestManage */ = {
 			isa = PBXGroup;
 			children = (
+				01A36B5E1FB2D49400B1893A /* XMLDictionary */,
 				01C050E31EEE8B470020160F /* FrankAPIClicent.h */,
 				01C050E41EEE8B470020160F /* FrankAPIClicent.m */,
 				01C050E71EEE8B470020160F /* FrankNetworkManage.h */,
@@ -372,6 +387,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A36B5D1FB0484700B1893A /* 1.png in Resources */,
 				01C050BE1EEE869D0020160F /* LaunchScreen.storyboard in Resources */,
 				01C050BB1EEE869D0020160F /* Assets.xcassets in Resources */,
 				01C050B91EEE869D0020160F /* Main.storyboard in Resources */,

@@ -16,9 +16,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedClient = [[self alloc] initWithBaseURL:nil];
-        
-               _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/json", @"text/html", @"text/javascript", nil];
-        
+                
         _sharedClient.requestSerializer.HTTPShouldHandleCookies = YES;
         [_sharedClient.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         _sharedClient.requestSerializer.timeoutInterval = 30.f;
@@ -26,12 +24,25 @@
         
         [_sharedClient.operationQueue setMaxConcurrentOperationCount:1];
         
-        /// 移除服务器返回的  Null 值，保证系统数据值的安全 ；同样可以使用 NullSafe 库进行处理
-        ((AFJSONResponseSerializer *)_sharedClient.responseSerializer).removesKeysWithNullValues = YES;
 
         
     });
     return _sharedClient;
+}
+
+- (void)responseForJson{
+    
+    self.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/json", @"text/html", @"text/javascript", nil];
+    
+    /// 移除服务器返回的  Null 值，保证系统数据值的安全 ；同样可以使用 NullSafe 库进行处理
+    ((AFJSONResponseSerializer *)self.responseSerializer).removesKeysWithNullValues = YES;
+}
+- (void)responseForXML{
+    
+    self.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", @"text/xml", @"text/javascript", @"text/html", nil];
 }
 
 @end

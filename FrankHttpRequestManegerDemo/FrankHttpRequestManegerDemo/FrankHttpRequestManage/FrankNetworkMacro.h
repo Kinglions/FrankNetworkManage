@@ -28,6 +28,6 @@
 #import "FrankUserDefaults.h"
 #import "NSString+Category.h"
 #import "DeviceManage.h"
-
+#import "XMLDictionary.h"
 
 #endif /* FrankNetworkMacro_h */

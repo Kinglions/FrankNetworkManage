@@ -23,32 +23,35 @@
             
             FrankLog(@"error");
             
-            //#error ------ 根据自己服务器返回的数据结构进行解析处理  ------------
-
-            NSString * value = [[error userInfo] objectForKey:NSLocalizedDescriptionKey];
+//            NSString * value = [[error userInfo] objectForKey:NSLocalizedDescriptionKey];
             
             NSString * errStr = [[error userInfo] objectForKey:@"NSDebugDescription"];
             
-            if (value)
-            {
-                [FrankActivityHUD showWithText:errStr?errStr:@"网络异常，请稍后再试" shimmering:NO];
+            [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+
+                NSString *noteStr = nil;
+                if ((status == AFNetworkReachabilityStatusUnknown) || (status == AFNetworkReachabilityStatusNotReachable)) {
+                    noteStr = @"当前网络不可用，请检查您的网络设置";
+                } else {
+                    noteStr = @"连接服务器失败，请稍后重试";
+                }
                 
-            }else{
-                [FrankActivityHUD showWithText:@"服务器异常,请稍后再试" shimmering:NO];
-                
-            }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [FrankActivityHUD showWithText:errStr?errStr:noteStr shimmering:NO];
+                });
+
+            }];
+            
         };
         
         
         self.failureBlock = ^(NSURLSessionDataTask *task, id responseObject, NSDictionary *requestParams) {
             
-            //#error ------ 根据自己服务器返回的数据结构进行解析处理  ------------
 
+//            处理请求失败时，显示服务器返回的失败原因
             FrankLog(@"%@",responseObject);
             NSString * msg = responseObject[@"errMsg"];
-            if ([msg isEqualToString:@"token or code fail"]) {
-                msg = @"该账号验证信息失效，需重新登录验证";
-            }
             
             if (msg) {
                 
@@ -72,27 +75,26 @@
     }
     [_headerParams removeAllObjects];// 移除所有数据
     
-//#error ------ 根据自己服务器要求配置请求头信息  ------------
+#error ------ 根据自己服务器要求配置请求头信息  ------------
 
-    NSString * token = [[FrankUserDefaults share] FrankObjectForKey:@"token"];
-    
-    NSString * code = [[FrankUserDefaults share] FrankObjectForKey:@"code"];
-    
-    if (token) {
-        [_headerParams setObject:token forKey:@"token"];
-    }
-    if (code) {
-        [_headerParams setObject:code forKey:@"code"];
-    }
-    
-    if (_headerParams.count == 2) {
-        
-        return _headerParams;
-    }
-    
-    return nil;
+    [_headerParams setValue:@"value" forKey:@"key"];
+
+    return _headerParams;
 }
-#pragma mark -------- 通过 代理 方式处理请求回调  ---------
+/**
+ @return 类方法获取去求头数据
+ */
++ (NSDictionary *)headerParams{
+    
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc]initWithCapacity:0];
+    
+#error ------ 根据自己服务器要求配置请求头信息  ------------
+
+    [dic setValue:@"value" forKey:@"key"];
+    
+    return dic;
+}
+
 #pragma mark -------- 通过 代理 方式处理请求回调  ---------
 
 -(void)doneBusiness:(ResponseHttpType)returnStatus
@@ -115,7 +117,6 @@
     
     [self doRequestWithHttpMethod:method params:params isNeedHeaderParams:isNeedHeader success:nil failure:nil netError:nil];
 }
-#pragma mark -------- 通过 block 方式处理请求回调  ---------
 #pragma mark -------- 通过 block 方式处理请求回调  ---------
 /**
  供子类调用

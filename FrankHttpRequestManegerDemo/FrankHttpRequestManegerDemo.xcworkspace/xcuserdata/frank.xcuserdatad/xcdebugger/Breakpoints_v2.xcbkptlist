@@ -19,13 +19,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FrankHttpRequestManegerDemo/AppDelegate.m"
-            timestampString = "519009996.004108"
+            filePath = "FrankHttpRequestManegerDemo/FrankHttpRequestManage/FrankNetworkManage.m"
+            timestampString = "531815988.130544"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "-setHttpBaseMessage"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-completionHandlerWithTask:responseData:requestParams:error:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FrankHttpRequestManegerDemo/FrankHttpRequestManage/FrankNetworkManage.m"
+            timestampString = "531815988.130646"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "-completionHandlerWithTask:responseData:requestParams:error:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FrankHttpRequestManegerDemo/FrankHttpRequestManage/FrankNetworkManage.m"
+            timestampString = "531815988.130705"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "-completionHandlerWithTask:responseData:requestParams:error:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FrankHttpRequestManegerDemo/FrankHttpRequestManage/FrankNetworkManage.m"
+            timestampString = "531815988.130757"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "+httpRequestWithHttpMethod:responseDataType:urlString:headerParams:params:finally:sucess:failure:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

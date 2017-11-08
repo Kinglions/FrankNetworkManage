@@ -13,4 +13,13 @@
 
 + (instancetype)sharedClient;
 
+/**
+ 对 JSON 响应数据的配置
+ */
+- (void)responseForJson;
+/**
+ 对 XML 响应数据的配置
+ */
+- (void)responseForXML;
+
 @end

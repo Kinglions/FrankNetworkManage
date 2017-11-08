@@ -69,6 +69,10 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
  请求头数据字典
  */
 @property (nonatomic,strong)NSMutableDictionary * headerParams;
+/**
+ @return 类方法获取去求头数据
+ */
++ (NSDictionary *)headerParams;
 
 /**
  网络请求失败回调
@@ -79,7 +83,6 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
  */
 @property (nonatomic,copy)ReplyError networkerrBlock;
 
-#pragma mark -------- 通过 代理 方式处理请求回调  ---------
 #pragma mark -------- 通过 代理 方式处理请求回调  ---------
 
 /**
@@ -107,7 +110,7 @@ typedef NS_ENUM(NSInteger,BusinessHttpType) {
 -(void)doRequestWithHttpMethod:(HTTP_REQUEST_METHOD)method
                         params:(id)params
             isNeedHeaderParams:(BOOL)isNeedHeader;
-#pragma mark -------- 通过 block 方式处理请求回调  ---------
+
 #pragma mark -------- 通过 block 方式处理请求回调  ---------
 
 /**

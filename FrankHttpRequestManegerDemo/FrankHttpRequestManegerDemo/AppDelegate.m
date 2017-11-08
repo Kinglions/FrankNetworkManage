@@ -24,7 +24,7 @@
     return YES;
 }
 
-// ------ 根据自己服务器数据格式配置请求结果判断的回调  ------------
+#error ------ 根据自己服务器数据格式配置请求结果判断的回调  ------------
 
 /**
  配置网络请求
@@ -32,32 +32,34 @@
 -(void)setHttpBaseMessage{
     
     // 配置网络请求 baseUrl
-    [FrankNetworkManage updateBaseUrl:@"http://apistore.baidu.com/"];
+    [FrankNetworkManage updateBaseUrl:@"https://news-at.zhihu.com/"];
     
     // 配置网络数据缓存类型
-    [FrankNetworkManage shareManager].cacheType = NetworkCacheType_CacheAndLoad;
+    [FrankNetworkManage shareManager].cacheType = NetworkCacheType_OnlyCache;
     
-    // 配置网络请求成功判断逻辑
-    [FrankNetworkManage shareManager].judgeResponseIsSuccess = ^BOOL(id responseSuccess) {
-        
-        BOOL loginSucess = NO;
-        
-        if ( [responseSuccess isKindOfClass:[NSDictionary class]] ) {
-            
-            if (responseSuccess[@"errNum"] != nil) {
-                
-                // 判断是否请求成功，loginSucess = YES ：表示成功，否则表示失败
-                loginSucess =  [responseSuccess[@"errNum"] isEqualToNumber:@(0)];
-                
-                // 账号被登出，下次需要重新登录，并且发送通知
-                if ([responseSuccess[@"errNum"] isEqualToNumber:@(4)]) {
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"账号失效通知" object:nil userInfo:responseSuccess];// 发送重新登录的通知
-                }
-            }
-        }
-        return loginSucess;
-    };
+    
+#error -----   如果 服务器 返回的有 成功状态标识，可以根据状态进行 如下 配置，否则不需要配置 judgeResponseIsSuccess
+    
+//    // 配置网络请求成功判断逻辑
+//    [FrankNetworkManage shareManager].judgeResponseIsSuccess = ^BOOL(id responseSuccess) {
+//
+//        BOOL loginSucess = NO;
+//
+//        if ( [responseSuccess isKindOfClass:[NSDictionary class]] ) {
+//
+//            // 根据服务器定制的成功状态进行配置，loginSucess = YES ：表示成功，否则表示失败
+//            loginSucess =  [responseSuccess[@"code"] isEqualToNumber:@(200)];
+//
+//            // 根据自己项目需求，如果服务器定义字段，进行判断是否需要发出区分账号失效通知及相关处理
+//            // 账号被登出，下次需要重新登录，并且发送通知
+//            if ([responseSuccess[@"code"] isEqualToNumber:@(401)]) {
+//
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"账号失效通知" object:nil userInfo:responseSuccess];// 发送重新登录的通知
+//            }
+//
+//        }
+//        return loginSucess;
+//    };
     
 }
 

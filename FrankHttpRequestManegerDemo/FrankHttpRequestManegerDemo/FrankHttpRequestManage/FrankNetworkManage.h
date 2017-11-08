@@ -17,6 +17,9 @@
 #import <AFNetworking/AFURLSessionManager.h>
 #import "FrankNetworkMacro.h"
 
+
+
+
 typedef void (^RequestPrepare)();
 typedef void (^RequestFinally)();
 
@@ -74,6 +77,19 @@ typedef NS_ENUM(NSUInteger, HTTP_REQUEST_METHOD) {
     HTTP_REQUEST_METHOD_PATCH,
     HTTP_REQUEST_METHOD_DELETE,
 };
+
+/**
+相应数据格式
+
+ - HTTP_RESPONSE_TYPE_JSON: json 数据
+ - HTTP_RESPONSE_TYPE_XML: xml 数据
+ */
+typedef NS_ENUM(NSUInteger, HTTP_RESPONSE_TYPE) {
+    
+    HTTP_RESPONSE_TYPE_JSON = 0,
+    HTTP_RESPONSE_TYPE_XML,
+};
+
 
 /**
  网络请求缓存处理
@@ -168,9 +184,24 @@ typedef NS_ENUM(NSUInteger, NetworkCacheType) {
  */
 + (NSString *)absoluteUrlWithPath:(NSString *)path;
 
+/**
+ * 开启监测网络状态
+ *
+ * @param enabled - YES：开启监测；NO：关闭
+ */
++ (void)monitoringNetworkReachability:(BOOL)enabled;
 
 /**
- *  统一网络请求
+ * 是否显示手机状态栏的网络访问标示
+ *
+ * @param enabled - YES：显示；NO：不显示
+ */
++ (void)showNetworkActivityIndication:(BOOL)enabled;
+
+// =======================   根据卓健需求添加新功能   ============================
+
+/**
+ *  默认为 JSON 相应数据请求
  *
  *  @param method      请求类型（直接调用 枚举）
  *  @param urlString    请求URLString
@@ -182,6 +213,28 @@ typedef NS_ENUM(NSUInteger, NetworkCacheType) {
  *  @param netError      请求连接错误
  */
 +(void)httpRequestWithHttpMethod:(HTTP_REQUEST_METHOD)method
+                       urlString:(NSString *)urlString
+                    headerParams:(NSDictionary *)headerParams
+                          params:(id)params
+                         finally:(RequestFinally)  finally
+                          sucess:(ReplySucess)   sucess
+                         failure:(ReplyFailure)  failure
+                           error:(ReplyError)netError;
+/**
+ *  统一网络请求
+ *
+ *  @param method      请求类型（直接调用 枚举）
+ *  @param responseDataType    请求响应数据格式枚举，默认为 JSON 数据
+ *  @param urlString    请求URLString
+ *  @param headerParams 请求头添加的参数
+ *  @param params       请求参数
+ *  @param finally      请求结束，进行清理（直接调用）
+ *  @param sucess       请求成功，数据正常
+ *  @param failure      请求失败
+ *  @param netError      请求连接错误
+ */
++(void)httpRequestWithHttpMethod:(HTTP_REQUEST_METHOD)method
+                responseDataType:(HTTP_RESPONSE_TYPE)responseDataType
                        urlString:(NSString *)urlString
                     headerParams:(NSDictionary *)headerParams
                           params:(id)params
@@ -205,44 +258,46 @@ typedef NS_ENUM(NSUInteger, NetworkCacheType) {
 /*
  *	图片上传接口，若不指定baseurl，可传完整的url
  *
- *	@param image			图片对象
- *	@param url				上传图片的接口路径，如/path/images/
+ *	@param imageData			图片对象
+ *	@param url				上传图片的接口
  *	@param filename		给图片起一个名字，默认为当前日期时间,格式为"yyyyMMddHHmmss"，后缀为`jpg`
- *	@param name				与指定的图片相关联的名称，这是由后端写接口的人指定的，如imagefiles
+ *	@param name			与指定的图片相关联的名称，这是由后端写接口的人指定的，如imagefiles
  *	@param mimeType		默认为image/jpeg
  *	@param parameters	参数
  *	@param progress		上传进度
  *	@param success		上传成功回调
- *	@param fail				上传失败回调
+ *    @param fail            上传失败回调
+ *    @param netError        错误回调
  *
  *	@return
  */
 
-+ (void)uploadWithImage:(UIImage *)image
-                    url:(NSString *)url
-               filename:(NSString *)filename
++ (void)uploadWithImage:(id)imageData
+                    url:(NSString *)urlString
+               filename:(NSString *)fileName
                    name:(NSString *)name
                mimeType:(NSString *)mimeType
-             parameters:(NSDictionary *)parameters
+             parameters:(NSDictionary *)params
                progress:(ReplyUploadProgress)progress
-                success:(ReplySucess)success
-                   fail:(ReplyError)fail;
+                 sucess:(ReplySucess)sucess
+                failure:(ReplyFailure)failure
+                  error:(ReplyError)netError;
 
-/**
- *	上传文件操作
- *
- *	@param url						上传路径
- *	@param uploadingFile	待上传文件的路径
- *	@param progress			上传进度
- *	@param success				上传成功回调
- *	@param fail					上传失败回调
- *
- */
-+ (void)uploadFileWithUrl:(NSString *)url
-            uploadingFile:(NSString *)uploadingFile
-                 progress:(ReplyUploadProgress)progress
-                  success:(ReplySucess)success
-                     fail:(ReplyError)fail;
+///**
+// *    上传文件操作
+// *
+// *    @param url                        上传路径
+// *    @param uploadingFile    待上传文件的路径
+// *    @param progress            上传进度
+// *    @param success                上传成功回调
+// *    @param fail                    上传失败回调
+// *
+// */
+//+ (void)uploadFileWithUrl:(NSString *)url
+//            uploadingFile:(NSString *)uploadingFile
+//                 progress:(ReplyUploadProgress)progress
+//                  success:(ReplySucess)success
+//                     fail:(ReplyError)fail;
 
 
 

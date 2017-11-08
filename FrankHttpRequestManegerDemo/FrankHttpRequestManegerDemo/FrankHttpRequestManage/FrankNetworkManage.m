@@ -14,6 +14,9 @@ static NSString * WYB_privateNetworkBaseUrl = nil;
 static BOOL WYB_shouldAutoEncode = NO;
 static NSDictionary * WYB_httpHeaders = nil;
 
+static AFNetworkReachabilityStatus networkStatus;
+
+
 @interface FrankNetworkManage ()
 
 /**
@@ -70,6 +73,60 @@ static NSDictionary * WYB_httpHeaders = nil;
     return [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
 
+/**
+ * 开启监测网络状态
+ *
+ * @param enabled - YES：开启监测；NO：关闭
+ */
++ (void)monitoringNetworkReachability:(BOOL)enabled
+{
+    if (enabled) {
+        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            networkStatus = status;
+            NSString *noteStr = nil;
+            switch (status) {
+                case AFNetworkReachabilityStatusNotReachable:
+                {
+                    noteStr = @"当前没有网络";
+                }
+                    break;
+                case AFNetworkReachabilityStatusReachableViaWWAN:
+                {
+                    noteStr = @"当前使用手机数据网络";
+                }
+                    break;
+                case AFNetworkReachabilityStatusReachableViaWiFi:
+                {
+                    noteStr = @"当前使用 WiFi 网络";
+                }
+                    break;
+                case AFNetworkReachabilityStatusUnknown:
+                    
+                default:
+                {
+                    noteStr = @"未知网络连接";
+                }
+                    break;
+            }
+            
+            [PopTipView showInView:nil wihtTipText:noteStr];
+
+            
+        }];
+        
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    } else {
+        [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+    }
+}
+
++ (void)showNetworkActivityIndication:(BOOL)enabled;
+{
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:enabled];
+}
+
+
+
 
 + (NSString *)stringWithMethod:(HTTP_REQUEST_METHOD)method {
     switch (method) {
@@ -94,6 +151,27 @@ static NSDictionary * WYB_httpHeaders = nil;
                          failure:(ReplyFailure)  failure
                            error:(ReplyError)netError{
     
+    [FrankNetworkManage httpRequestWithHttpMethod:method
+                                 responseDataType:HTTP_RESPONSE_TYPE_JSON
+                                        urlString:urlString
+                                     headerParams:headerParams
+                                           params:params
+                                          finally:failure
+                                           sucess:sucess
+                                          failure:failure
+                                            error:netError];
+}
+
++(void)httpRequestWithHttpMethod:(HTTP_REQUEST_METHOD)method
+                responseDataType:(HTTP_RESPONSE_TYPE)responseDataType
+                       urlString:(NSString *)urlString
+                    headerParams:(NSDictionary *)headerParams
+                          params:(id)params
+                         finally:(RequestFinally)  finally
+                          sucess:(ReplySucess)   sucess
+                         failure:(ReplyFailure)  failure
+                           error:(ReplyError)netError{
+    
 
     [FrankNetworkManage shareManager].finally = finally;
     [FrankNetworkManage shareManager].sucess = sucess;
@@ -103,13 +181,15 @@ static NSDictionary * WYB_httpHeaders = nil;
     if (!urlString) {
         NSLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL");
         return;
-    }
+    }    
     
     urlString = [self absoluteUrlWithPath:urlString];
     
     if ([self shouldEncode]) {
         urlString = [self encodeUrl:urlString];
     }
+    
+    
     [FrankNetworkManage shareManager].abUrl = urlString;
     
     if (![FrankNetworkManage shareManager].isShowHUD) {
@@ -122,19 +202,27 @@ static NSDictionary * WYB_httpHeaders = nil;
         NSDictionary * dict = [[FrankFMDBManage shareInstance] loadNetWorkCacheDataWithTableName:urlString paramsKey:params];
         
         [[FrankNetworkManage shareManager] completionHandlerWithTask:nil responseData:dict requestParams:params error:nil];
-
-        return;
         
     }
   
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
     
+//    处理请求头数据
     if (headerParams)
     {
         for (NSString * key in headerParams.allKeys)
         {
             [[FrankAPIClicent sharedClient].requestSerializer setValue:[NSString stringWithFormat:@"%@",headerParams[key]] forHTTPHeaderField:key];
         }
+    }
+    
+    if (responseDataType == HTTP_RESPONSE_TYPE_JSON) {
+        
+        [[FrankAPIClicent sharedClient] responseForJson];
+    }else if (responseDataType == HTTP_RESPONSE_TYPE_XML){
+        
+        [[FrankAPIClicent sharedClient] responseForXML];
     }
     
     NSStringEncoding oldStringEncoding = [FrankAPIClicent sharedClient].requestSerializer.stringEncoding;
@@ -172,6 +260,8 @@ static NSDictionary * WYB_httpHeaders = nil;
     
 }
 -(void)completionHandlerWithTask:(NSURLSessionDataTask *)task responseData:(id  _Nullable )responseObject requestParams:(id  _Nullable )requestParams error:(NSError * _Nullable)error{
+
+    FrankLog(@"\n请求地址：%@ \n请求参数：%@ \n\n返回数据：%@\n\n",self.abUrl,requestParams,responseObject);
     
     
     if ([FrankNetworkManage shareManager].isShowHUD) {
@@ -201,7 +291,7 @@ static NSDictionary * WYB_httpHeaders = nil;
             
         }else
         {
-            NSLog(@"[FrankNetworkManage shareManager].judgeResponseSuccess 为实现请求的判断方法，请在AppDelegate中实现，否则回调结果可能存在差异");
+            FrankLog(@"\n[FrankNetworkManage shareManager].judgeResponseSuccess 为实现请求的判断方法，请在AppDelegate中实现，不实现的话，block回调结果可能存在差异\n");
             
             if (self.sucess)
             {
@@ -214,18 +304,23 @@ static NSDictionary * WYB_httpHeaders = nil;
     }
 }
 
-+ (void)uploadWithImage:(UIImage *)image
-                                   url:(NSString *)urlString
-                              filename:(NSString *)filename
-                                  name:(NSString *)name
-                              mimeType:(NSString *)mimeType
-                            parameters:(NSDictionary *)parameters
-                              progress:(ReplyUploadProgress)progress
-                               success:(ReplySucess)success
-                                  fail:(ReplyError)fail {
++ (void)uploadWithImage:(id)imageData
+                    url:(NSString *)urlString
+               filename:(NSString *)fileName
+                   name:(NSString *)name
+               mimeType:(NSString *)mimeType
+             parameters:(NSDictionary *)params
+               progress:(ReplyUploadProgress)progress
+                 sucess:(ReplySucess)sucess
+                failure:(ReplyFailure)failure
+                  error:(ReplyError)netError{
+
+    [FrankNetworkManage shareManager].sucess = sucess;
+    [FrankNetworkManage shareManager].failure = failure;
+    [FrankNetworkManage shareManager].error = netError;
     
     if (!urlString) {
-        NSLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL");
+        FrankLog(@"URLString无效，无法生成URL。");
         return;
     }
     
@@ -235,19 +330,30 @@ static NSDictionary * WYB_httpHeaders = nil;
         urlString = [self encodeUrl:urlString];
     }
     
-    NSURLSessionTask * session =[[FrankAPIClicent sharedClient] POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString * placeName  = [formatter stringFromDate:[NSDate date]];
+    
+    if (fileName == nil || ![fileName isKindOfClass:[NSString class]] || fileName.length == 0) {
+        fileName = placeName;
+    }
+    if (name == nil || ![name isKindOfClass:[NSString class]] || name.length == 0) {
+        name = placeName;
+    }
+    
+    NSURLSessionTask * session =[[FrankAPIClicent sharedClient] POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+       
         
-        NSString *imageFileName = filename;
-        if (filename == nil || ![filename isKindOfClass:[NSString class]] || filename.length == 0) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"yyyyMMddHHmmss";
-            NSString *str = [formatter stringFromDate:[NSDate date]];
-            imageFileName = [NSString stringWithFormat:@"%@.jpg", str];
+        if ([imageData isKindOfClass:[NSData class]]) {
+            
+            [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:mimeType];
+            
+        } else if ([imageData isKindOfClass:[UIImage class]]) {
+            
+            NSData *data = [UIImagePNGRepresentation(imageData) length]>102400?UIImageJPEGRepresentation(imageData, 0.7):UIImagePNGRepresentation(imageData);
+            
+            [formData appendPartWithFileData:data name:name fileName:[NSString stringWithFormat:@"%@.png",fileName] mimeType:@"image/png"];
         }
-        
-        // 上传图片，以文件流的格式
-        [formData appendPartWithFileData:imageData name:name fileName:imageFileName mimeType:mimeType];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         if (progress) {
@@ -255,65 +361,62 @@ static NSDictionary * WYB_httpHeaders = nil;
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success)
-        {
-            success(task,responseObject,nil);
-        }
+        [[FrankNetworkManage shareManager] completionHandlerWithTask:task responseData:responseObject requestParams:params error:nil];
+
        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (fail)
-        {
-            fail(error,task,nil);
-        }
+        [[FrankNetworkManage shareManager] completionHandlerWithTask:task responseData:nil requestParams:params error:error];
         
     }];
     
     [session resume];
 }
-+ (void)uploadFileWithUrl:(NSString *)urlString
-            uploadingFile:(NSString *)uploadingFile
-                 progress:(ReplyUploadProgress)progress
-                  success:(ReplySucess)success
-                     fail:(ReplyError)fail {
-    
-    if (!urlString) {
-        NSLog(@"URLString无效，无法生成URL。可能是URL中有中文，请尝试Encode URL");
-        return;
-    }
-    
-    urlString = [self absoluteUrlWithPath:urlString];
-    
-    if ([self shouldEncode]) {
-        urlString = [self encodeUrl:urlString];
-    }
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    
-     __block NSURLSessionDataTask *session = [[FrankAPIClicent sharedClient] uploadTaskWithRequest:request fromFile:[NSURL URLWithString:uploadingFile] progress:^(NSProgress * _Nonnull uploadProgress) {
-        if (progress) {
-            progress(uploadProgress.completedUnitCount, uploadProgress.totalUnitCount);
-        }
-    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        
-        
-        if (error) {
-            
-            if (fail)
-            {
-                fail(error,session,nil);
-            }
-            
-        } else {
-            
-            if (success)
-            {
-                success(session,responseObject,nil);
-            }
-        }
-    }];
-    
-}
+
+
+//+ (void)uploadFileWithUrl:(NSString *)urlString
+//            uploadingFile:(NSString *)uploadingFile
+//                 progress:(ReplyUploadProgress)progress
+//                  success:(ReplySucess)success
+//                     fail:(ReplyError)fail {
+//    
+//    if (!urlString) {
+//        FrankLog(@"URLString无效，无法生成URL");
+//        return;
+//    }
+//    
+//    urlString = [self absoluteUrlWithPath:urlString];
+//    
+//    if ([self shouldEncode]) {
+//        urlString = [self encodeUrl:urlString];
+//    }
+//    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    
+//     __block NSURLSessionDataTask *session = [[FrankAPIClicent sharedClient] uploadTaskWithRequest:request fromFile:[NSURL URLWithString:uploadingFile] progress:^(NSProgress * _Nonnull uploadProgress) {
+//        if (progress) {
+//            progress(uploadProgress.completedUnitCount, uploadProgress.totalUnitCount);
+//        }
+//    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+//        
+//        
+//        if (error) {
+//            
+//            if (fail)
+//            {
+//                fail(error,session,nil);
+//            }
+//            
+//        } else {
+//            
+//            if (success)
+//            {
+//                success(session,responseObject,nil);
+//            }
+//        }
+//    }];
+//    
+//}
 
 /**
  自动判断 baseurl 并进行组合 url
